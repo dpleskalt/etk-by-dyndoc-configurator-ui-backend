@@ -1,0 +1,83 @@
+########################################################################################################################
+#                                                                                                                      #
+#                                                                                                                      #
+########################################################################################################################
+
+server:
+  port: 8080
+  servlet:
+    context-path: /^project.artifactId^
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+      pattern: '{"threadName":"%I", "remoteIP": "%a", "localIP": "%A", "clientHost": "%h", "protocol": "%H", "requestMethod": "%m", "requestURL": "%r", "statusCode": "%s", "elapsedTime": "%D", "responseTime": "%F", "date": "%t", "user": "%u", "requestURI": "%U", "server": "%v", "spanID": "%{X-B3-spanid}i", "traceID": "%{X-B3-traceid}i", "parentSpanID": "%{X-B3-ParentSpanId}i"}'
+      prefix: access-log
+      suffix: .log
+      max-days: 5
+      rename-on-rotate: true
+  # Enable gracefule shutdown
+  shutdown: graceful
+
+logging:
+  level:
+    hr.ericsson.ehealth.belarus: DEBUG
+  payload: false
+  error:
+    stacktrace: true
+  spring:
+    boot:
+      application: hr.ericsson.ehealth.belarus.dyndoc.configurator.Application
+  #kafka:
+    #topic: "by-application-topic"
+    #bootstrap:
+      #servers: messaging-broker-o1:9092,messaging-broker-o2:9092,messaging-broker-o3:9092
+
+spring:
+  banner:
+    location: classpath:/banner-dev.txt
+  profiles:
+    active: default
+  session:
+    store-type: none
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+# actuator
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+#  endpoint.health.show-details: always
+  health.defaults.enabled: false
+  endpoints.web.exposure.include: refresh,health,info,metrics,prometheus
+# because there is no eureka registry:
+spring.cloud.discovery.client.composite-indicator.enabled: false
+
+
+## Configuring actuator/info endpoint
+info:
+  app:
+    name: ^project.artifactId^
+    description: ^project.description^
+    version: ^project.version^
+
+
+swagger:
+  title: ^project.name^
+  description: ^project.description^
+  version: ^project.version^
+  termsOfServiceUrl: \#
+  contactName: Iva Ivi?
+  contactUrl: \#
+  contactEmail: iva.ivic@email.com
+  license: License of API
+  licenseUrl: \#
+
+by:
+  errors:
+     languages:
+       - en
+       - ru
