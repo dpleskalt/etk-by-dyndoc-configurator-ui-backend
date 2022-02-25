@@ -1,7 +1,7 @@
 package hr.ericsson.ehealth.belarus.dyndoc.configurator.service;
 
-import hr.ericsson.ehealth.belarus.dyndoc.configurator.dao.DyndocRepository;
-import hr.ericsson.ehealth.belarus.dyndoc.configurator.dao.dto.DyndocDto;
+import hr.ericsson.ehealth.belarus.dyndoc.configurator.dto.DyndocDto;
+import hr.ericsson.ehealth.belarus.dyndoc.configurator.repository.DyndocRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

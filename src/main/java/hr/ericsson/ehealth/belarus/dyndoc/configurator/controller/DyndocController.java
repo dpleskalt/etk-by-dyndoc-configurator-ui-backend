@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
@@ -23,8 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Controller with the dependency injection enabled by the lombok.AllArgsConstructor annotation.
- * Logging is enabled by lombok.extern.slf4j.Slf4j facade. See <a
+ * Example from the Java-template project, you need delete it later Controller with the dependency
+ * injection enabled by the lombok.AllArgsConstructor annotation. Logging is enabled by
+ * lombok.extern.slf4j.Slf4j facade. See <a
  * href="https://projectlombok.org/features/constructor">lombok constructor</a>
  */
 @AllArgsConstructor
@@ -79,7 +80,7 @@ public class DyndocController {
         @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
         @ApiResponse(code = 500, message = "Internal error")
       })
-  public DyndocModel item(
+  public DyndocModel getItem(
       @ApiParam(value = "Item id.", required = true) @PathVariable("id") Long id) {
     log.logMessage(" ---> Get item with id: " + id, LogLevel.DEBUG);
     return this.service.processData();
@@ -102,10 +103,9 @@ public class DyndocController {
         @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
         @ApiResponse(code = 500, message = "Internal error")
       })
-  public Iterable<DyndocModel> items() {
+  public List<DyndocModel> getItems() {
     log.logMessage(" ---> Get all items", LogLevel.DEBUG);
-    return Stream.of(DyndocModel.builder().data("Saved data").build())
-        .collect(Collectors.toCollection(HashSet::new));
+    return Stream.of(DyndocModel.builder().data("Saved data").build()).collect(Collectors.toList());
   }
 
   /**
@@ -147,7 +147,8 @@ public class DyndocController {
         @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
         @ApiResponse(code = 500, message = "Internal error")
       })
-  public void delete(@ApiParam(value = "Item id.", required = true) @PathVariable("id") Long id) {
+  public void deleteItem(
+      @ApiParam(value = "Item id.", required = true) @PathVariable("id") Long id) {
     log.logMessage(" ---> Delete item with id: {}" + id, LogLevel.DEBUG);
   }
 }

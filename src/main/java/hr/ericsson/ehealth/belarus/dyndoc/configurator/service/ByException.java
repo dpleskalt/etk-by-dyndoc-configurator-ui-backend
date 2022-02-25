@@ -1,4 +1,4 @@
-package hr.ericsson.ehealth.belarus.dyndoc.configurator.service.impl;
+package hr.ericsson.ehealth.belarus.dyndoc.configurator.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

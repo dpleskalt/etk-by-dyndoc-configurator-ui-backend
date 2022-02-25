@@ -1,4 +1,4 @@
-package hr.ericsson.ehealth.belarus.dyndoc.configurator.dao.dto;
+package hr.ericsson.ehealth.belarus.dyndoc.configurator.dto;
 
 import lombok.Builder;
 import lombok.Data;
