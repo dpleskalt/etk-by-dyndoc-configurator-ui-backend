@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    initialization-mode: always #for initial database population set to 'always'
+    platform: postgres
+    username: iehr
+    password: 1234
+    url: jdbc:postgresql://postgres:5432/iehr?currentSchema=iehr&useSSL=false
+    sqlScriptEncoding: UTF-8
+    driver-class-name: org.postgresql.Driver
