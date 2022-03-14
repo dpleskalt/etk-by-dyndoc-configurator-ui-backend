@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0_1
+      author: dzmitry.harlach@ericsson.com
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: init_schema.sql
+            relativeToChangelogFile: true
+            stripComments: true
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: schema-dynamicDocuments.sql
+            relativeToChangelogFile: true
+            stripComments: true
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: data-dynamicDocuments.sql
+            relativeToChangelogFile: true
+            stripComments: true
+        - tagDatabase:
+            tag: 0.0

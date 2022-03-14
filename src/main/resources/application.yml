@@ -35,10 +35,23 @@ logging:
       #servers: messaging-broker-o1:9092,messaging-broker-o2:9092,messaging-broker-o3:9092
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  #to use local postgres db run spring with "local" profile, -Dspring.profiles.active=local in VM arguments
+  profiles:
+    active: dev
+  liquibase:
+    enabled: true
+    drop-first: true
+    change-log: classpath:/db.changelog/db.changelog-master.yaml
+    default-schema: iehr
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   banner:
     location: classpath:/banner-dev.txt
-  profiles:
-    active: default
   session:
     store-type: none
   lifecycle:
