@@ -58,7 +58,7 @@ public class ObjectCategory {
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @Fetch(value = FetchMode.SUBSELECT)
   @JoinColumn(name = "OBJECT_CATEGORY_ID")
-  private List<ObjectCategoryL> thrObjectCategoryL;
+  private List<ObjectCategoryL> objectCategoryL;
 
   @Column(name = "COMPOSITION_CODE", length = 100)
   private String compositionCode;
@@ -69,7 +69,7 @@ public class ObjectCategory {
 
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "CATEGORY_TYPE_ID")
-  private ObjectCategoryType thrObjectCategoryType;
+  private ObjectCategoryType objectCategoryType;
 
   @Column(name = "PERMISSION_CODE", length = 100)
   private String permissionCode;

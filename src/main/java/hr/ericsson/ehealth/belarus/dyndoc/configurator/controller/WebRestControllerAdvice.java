@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.FieldError;
@@ -56,7 +57,7 @@ public class WebRestControllerAdvice {
   @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
   public List<ByErrorResponse> validationException(
       final MethodArgumentNotValidException ex, final HttpServletRequest httpRequest) {
-    clcLogger.logError(ex);
+    clcLogger.logMessage(ex.getMessage(), LogLevel.ERROR);
 
     List<ByErrorResponse> result = new ArrayList<>();
 

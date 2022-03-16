@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -52,13 +53,14 @@ public class ObjectClass {
   private String updatedBy;
 
   @Column(name = "STATUS", nullable = false, length = 1)
+  @Pattern(regexp = "^[DN]$")
   @ColumnDefault("'D'")
   private String status;
 
   @OneToMany(cascade = CascadeType.ALL)
   @LazyCollection(LazyCollectionOption.FALSE)
   @JoinColumn(name = "OBJECT_CLASS_ID")
-  private List<ObjectCategory> thrObjectCategory;
+  private List<ObjectCategory> objectCategory;
 
   @Column(name = "INPUT_FORM", nullable = false, length = 1)
   private String inputForm;
@@ -66,5 +68,5 @@ public class ObjectClass {
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @Fetch(value = FetchMode.SUBSELECT)
   @JoinColumn(name = "OBJECT_CLASS_ID")
-  private List<ObjectClassL> thrObjectClassL;
+  private List<ObjectClassL> objectClassL;
 }
