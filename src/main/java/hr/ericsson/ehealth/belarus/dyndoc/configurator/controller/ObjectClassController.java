@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/classes")
 public class ObjectClassController {
 
   private final ObjectClassService objectClassService;
@@ -22,7 +22,7 @@ public class ObjectClassController {
    * @param objectClassId
    * @return Object class with the supplied class id.
    */
-  @GetMapping("/object-class/{objectClassId}")
+  @GetMapping("/{objectClassId}")
   @ApiOperation(
       value = "Retrieve specific object class with the supplied id",
       notes = "Returns object class with the supplied id",
@@ -42,5 +42,30 @@ public class ObjectClassController {
           Integer objectClassId) {
 
     return ResponseEntity.ok(objectClassService.getById(objectClassId));
+  }
+
+  /**
+   * Creates a new object class.
+   *
+   * @return Created object class object.
+   */
+  @PostMapping
+  @ApiOperation(
+      value = "Create a new class object",
+      notes = "Returns created class object",
+      response = ClassModel.class)
+  @ApiResponses(
+      value = {
+        @ApiResponse(code = 200, message = "Successfully created a new class object"),
+        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+        @ApiResponse(
+            code = 403,
+            message = "Accessing the resource you were trying to reach is forbidden"),
+        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+        @ApiResponse(code = 500, message = "Internal error")
+      })
+  public ResponseEntity<ClassModel> createClassObject(@Valid @RequestBody ClassModel classModel) {
+
+    return ResponseEntity.ok(objectClassService.createObjectClass(classModel));
   }
 }

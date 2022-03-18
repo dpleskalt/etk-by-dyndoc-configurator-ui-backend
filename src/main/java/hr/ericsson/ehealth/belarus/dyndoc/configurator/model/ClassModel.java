@@ -2,7 +2,7 @@ package hr.ericsson.ehealth.belarus.dyndoc.configurator.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +20,9 @@ public class ClassModel {
 
   @ApiModelProperty(value = "Class code of object for dynamically created content")
   String objectClassCode;
+
+  @ApiModelProperty(value = "Class object name.")
+  String objectClassName;
 
   @ApiModelProperty(value = "Class class note.")
   String note;

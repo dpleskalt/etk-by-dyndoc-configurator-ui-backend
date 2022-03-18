@@ -1,6 +1,6 @@
 package hr.ericsson.ehealth.belarus.dyndoc.configurator.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
