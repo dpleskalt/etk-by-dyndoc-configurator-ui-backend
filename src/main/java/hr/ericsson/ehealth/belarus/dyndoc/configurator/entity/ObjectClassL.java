@@ -1,15 +1,17 @@
 package hr.ericsson.ehealth.belarus.dyndoc.configurator.entity;
 
+import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -40,4 +42,17 @@ public class ObjectClassL extends BaseEntity {
   @Pattern(regexp = "^[DN]$")
   @ColumnDefault("'D'")
   private String status;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+    ObjectClassL that = (ObjectClassL) o;
+    return id != null && Objects.equals(id, that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
 }

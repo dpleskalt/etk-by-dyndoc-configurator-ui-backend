@@ -73,4 +73,8 @@ public class ObjectCategory {
 
   @Column(name = "PERMISSION_CODE", length = 100)
   private String permissionCode;
+
+  @ManyToOne
+  @JoinColumn(name = "OBJECT_CLASS_ID", nullable = false)
+  private ObjectClass objectClass;
 }

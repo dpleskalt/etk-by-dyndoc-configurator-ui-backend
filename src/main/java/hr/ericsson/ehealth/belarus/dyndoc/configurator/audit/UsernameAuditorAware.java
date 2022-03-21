@@ -9,7 +9,7 @@ public class UsernameAuditorAware implements AuditorAware<String> {
 
   @Override
   public Optional<String> getCurrentAuditor() {
-    return Optional.of("Dmitry");
+    return Optional.of("TestUser");
   }
 
   //    @Override
