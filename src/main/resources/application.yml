@@ -41,7 +41,7 @@ spring:
 
   #to use local postgres db run spring with "local" profile, -Dspring.profiles.active=local in VM arguments
   profiles:
-    active: local
+    active: dev
   liquibase:
     enabled: true
     drop-first: true
