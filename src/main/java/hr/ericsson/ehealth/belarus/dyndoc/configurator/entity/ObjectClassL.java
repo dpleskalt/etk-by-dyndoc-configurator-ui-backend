@@ -1,27 +1,36 @@
 package hr.ericsson.ehealth.belarus.dyndoc.configurator.entity;
 
-import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Objects;
+import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import lombok.*;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "THR_OBJECT_CLASS_L")
-public class ObjectClassL {
+@EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
+public class ObjectClassL extends BaseEntity {
   @Id
   @Column(name = "ID", nullable = false)
+  @GeneratedValue(generator = "object_class_l_seq", strategy = GenerationType.SEQUENCE)
+  @SequenceGenerator(
+      name = "object_class_l_seq",
+      sequenceName = "object_class_l_seq",
+      allocationSize = 1)
   private Integer id;
 
-  @Column(name = "OBJECT_CLASS_ID", nullable = false)
-  private Integer objectClassId;
+  @ManyToOne
+  @JoinColumn(name = "OBJECT_CLASS_ID", nullable = false)
+  private ObjectClass objectClass;
 
   @Column(name = "OBJECT_CLASS_NAME", nullable = false, length = 500)
   private String objectClassName;
@@ -29,22 +38,21 @@ public class ObjectClassL {
   @Column(name = "LANGUAGE_ID", nullable = false, length = 10)
   private String languageId;
 
-  @Column(name = "NOTE", length = 4000)
-  private String note;
-
-  @Column(name = "CREATION_DATE", nullable = false)
-  private Date creationDate;
-
-  @Column(name = "CREATED_BY", nullable = false, length = 100)
-  private String createdBy;
-
-  @Column(name = "LAST_UPDATE_DATE")
-  private Date updateDate;
-
-  @Column(name = "LAST_UPDATED_BY", length = 100)
-  private String updatedBy;
-
-  @Column(name = "STATUS", nullable = false, length = 1)
+  @Column(name = "STATUS", length = 1)
+  @Pattern(regexp = "^[DN]$")
   @ColumnDefault("'D'")
   private String status;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+    ObjectClassL that = (ObjectClassL) o;
+    return id != null && Objects.equals(id, that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
 }

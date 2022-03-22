@@ -2,6 +2,26 @@
 
 # eHealth Microservice
 
+<h1>Instructions for running application:</h1>
+
+<h3> Launching with containers  </h3>
+
+1. Build the project with `mvn clean install`
+2. In terminal execute command `docker compose up --force-recreate --build -d`
+3. Application will be available on http://localhost:8080/
+4. Swagger will be available on  http://localhost:8080/dyndoc-configurator-ui-backend/swagger-ui/
+
+<h3> Launching via intellij idea: </h3>
+
+1. In configuration set active profile: `local`
+2. Run main method from Application.java
+3. Application will be available on http://localhost:8081/
+
+<h3> Debug connection to container: </h3>
+
+Use `10005` port for connection to container in debug mode.
+
+
 ### Requirements
 
 - Latest openJDK 11
