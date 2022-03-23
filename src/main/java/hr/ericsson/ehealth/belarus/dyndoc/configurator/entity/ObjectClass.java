@@ -53,7 +53,7 @@ public class ObjectClass extends BaseEntity {
   @ColumnDefault("'D'")
   private String status;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.MERGE)
   @LazyCollection(LazyCollectionOption.FALSE)
   @JoinColumn(name = "OBJECT_CLASS_ID")
   @ToString.Exclude

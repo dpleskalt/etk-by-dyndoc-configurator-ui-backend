@@ -2,6 +2,7 @@ package hr.ericsson.ehealth.belarus.dyndoc.configurator.service;
 
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.entity.ObjectClass;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.entity.ObjectClassL;
+import hr.ericsson.ehealth.belarus.dyndoc.configurator.entity.ObjectStatus;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.mapper.ClassMapper;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.model.ClassModel;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.model.DesignationModel;
@@ -56,6 +57,17 @@ public class ObjectClassService {
 
   @Transactional
   public void remove(Integer objectClassId) {
-    objectClassRepository.deleteById(objectClassId);
+
+    ObjectClass objectClass = objectClassRepository.getOne(objectClassId);
+    objectClass.setStatus(ObjectStatus.N.getValue());
+
+    objectClass
+        .getObjectClassL()
+        .forEach(objectClassL -> objectClassL.setStatus(ObjectStatus.N.getValue()));
+    objectClass
+        .getObjectCategory()
+        .forEach(objectCategory -> objectCategory.setStatus(ObjectStatus.N.getValue()));
+
+    objectClassRepository.save(objectClass);
   }
 }

@@ -118,11 +118,11 @@ public class ObjectClassController {
         @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
         @ApiResponse(code = 500, message = "Internal error")
       })
-  @ResponseStatus(HttpStatus.NO_CONTENT)
+  @ResponseStatus(HttpStatus.OK)
   public void deleteObjectClass(
       @ApiParam(value = "Object class id", required = true) @PathVariable("objectClassId")
           Integer objectClassId) {
     log.logMessage(" ---> Delete object class with id: {}" + objectClassId, LogLevel.DEBUG);
-    //    objectClassService.remove(objectClassId);
+    objectClassService.remove(objectClassId);
   }
 }
