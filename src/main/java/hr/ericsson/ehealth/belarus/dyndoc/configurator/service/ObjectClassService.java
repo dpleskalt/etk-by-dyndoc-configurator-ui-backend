@@ -66,7 +66,13 @@ public class ObjectClassService {
         .forEach(objectClassL -> objectClassL.setStatus(ObjectStatus.N.getValue()));
     objectClass
         .getObjectCategory()
-        .forEach(objectCategory -> objectCategory.setStatus(ObjectStatus.N.getValue()));
+        .forEach(
+            objectCategory -> {
+              objectCategory.setStatus(ObjectStatus.N.getValue());
+              objectCategory
+                  .getObjectCategoryL()
+                  .forEach(objectCategoryL -> objectCategoryL.setStatus(ObjectStatus.N.getValue()));
+            });
 
     objectClassRepository.save(objectClass);
   }
