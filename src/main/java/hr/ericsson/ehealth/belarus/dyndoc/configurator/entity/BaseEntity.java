@@ -2,7 +2,9 @@ package hr.ericsson.ehealth.belarus.dyndoc.configurator.entity;
 
 import java.time.LocalDate;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -35,4 +37,9 @@ public class BaseEntity {
   @Column(name = "LAST_UPDATED_BY", length = 100)
   @LastModifiedBy
   private String updatedBy;
+
+  @Column(name = "STATUS", nullable = false, length = 1)
+  @Pattern(regexp = "^[DN]$")
+  @ColumnDefault("'D'")
+  private String status;
 }

@@ -8,10 +8,13 @@ import hr.ericsson.ehealth.belarus.dyndoc.configurator.model.ClassModel;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.model.DesignationModel;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.repository.ObjectClassLRepository;
 import hr.ericsson.ehealth.belarus.dyndoc.configurator.repository.ObjectClassRepository;
+import hr.ericsson.ehealth.belarus.dyndoc.configurator.specification.ObjectClassSpec;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,5 +78,10 @@ public class ObjectClassService {
             });
 
     objectClassRepository.save(objectClass);
+  }
+
+  @Transactional
+  public Page<ClassModel> getAll(ObjectClassSpec objectClassSpec, Pageable pageable) {
+    return objectClassRepository.findAll(objectClassSpec, pageable).map(classMapper::toClassModel);
   }
 }
