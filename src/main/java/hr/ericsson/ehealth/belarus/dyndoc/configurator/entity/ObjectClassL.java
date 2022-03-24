@@ -2,10 +2,8 @@ package hr.ericsson.ehealth.belarus.dyndoc.configurator.entity;
 
 import java.util.Objects;
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -37,11 +35,6 @@ public class ObjectClassL extends BaseEntity {
 
   @Column(name = "LANGUAGE_ID", nullable = false, length = 10)
   private String languageId;
-
-  @Column(name = "STATUS", length = 1)
-  @Pattern(regexp = "^[DN]$")
-  @ColumnDefault("'D'")
-  private String status;
 
   @Override
   public boolean equals(Object o) {

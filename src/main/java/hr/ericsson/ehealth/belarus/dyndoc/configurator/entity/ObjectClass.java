@@ -8,7 +8,6 @@ import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.*;
@@ -47,11 +46,6 @@ public class ObjectClass extends BaseEntity {
 
   @Column(name = "VALID_TO")
   private Date validTo;
-
-  @Column(name = "STATUS", nullable = false, length = 1)
-  @Pattern(regexp = "^[DN]$")
-  @ColumnDefault("'D'")
-  private String status;
 
   @OneToMany(cascade = CascadeType.MERGE)
   @LazyCollection(LazyCollectionOption.FALSE)
