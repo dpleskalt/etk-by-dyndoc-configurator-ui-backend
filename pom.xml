@@ -24,6 +24,7 @@
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<lombok.version>1.18.20</lombok.version>
 		<specification.version>2.6.2</specification.version>
+		<auth-lib.version>0.0.1+36</auth-lib.version>
 	</properties>
 
 	<dependencies>
@@ -37,8 +38,9 @@
 			<version>${specification.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>hr.ericsson.ehealth.belarus</groupId>
+			<artifactId>auth-lib</artifactId>
+			<version>${auth-lib.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

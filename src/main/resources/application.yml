@@ -23,6 +23,7 @@ server:
 logging:
   level:
     hr.ericsson.ehealth.belarus: DEBUG
+    org.springframework.security: DEBUG
   payload: false
   error:
     stacktrace: true
@@ -38,6 +39,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8081/certs
 
   #to use local postgres db run spring with "local" profile, -Dspring.profiles.active=local in VM arguments
   profiles:
@@ -93,3 +99,20 @@ by:
      languages:
        - en
        - ru
+
+auth-lib:
+  tokenLifetimeMinutes: 1440 # 24 hours
+  ignored-patterns:
+    - /static/**
+    - /actuator/**
+    - /v2/api-docs/**
+    - /v2/api-docs
+    - /swagger-resources/**
+    - /swagger-ui.html**
+    - /swagger-ui/
+    - /swagger-ui/**
+    - /webjars/**
+    - favicon.ico
+    - /api/oid/generate
+    - /api/oid/validate
+    - /api/oid/external-id
