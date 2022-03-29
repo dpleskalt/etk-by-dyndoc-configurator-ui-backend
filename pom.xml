@@ -24,7 +24,7 @@
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<lombok.version>1.18.20</lombok.version>
 		<specification.version>2.6.2</specification.version>
-		<auth-lib.version>0.0.1+36</auth-lib.version>
+		<auth-lib.version>0.0.1+50</auth-lib.version>
 	</properties>
 
 	<dependencies>

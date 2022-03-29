@@ -43,7 +43,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8081/certs
+          jwk-set-uri: http://keycloak-o1.dc1.lab.by.etk.hr:8080/auth/realms/lab/protocol/openid-connect/certs
 
   #to use local postgres db run spring with "local" profile, -Dspring.profiles.active=local in VM arguments
   profiles:

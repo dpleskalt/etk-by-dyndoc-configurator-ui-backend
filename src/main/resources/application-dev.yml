@@ -7,3 +7,11 @@ spring:
     url: jdbc:postgresql://postgres:5432/iehr?currentSchema=iehr&useSSL=false
     sqlScriptEncoding: UTF-8
     driver-class-name: org.postgresql.Driver
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+#         specify port 8081 if you are running keylock-mock-service in a docker container or 8080 locally
+          jwk-set-uri: http://localhost:8081/certs
+
