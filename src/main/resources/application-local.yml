@@ -15,9 +15,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.type.desctiptor.sql: trace
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.type.desctiptor.sql: trace
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+#          docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:17.0.1 start-dev
+          jwk-set-uri: http://localhost:8080/realms/lab/protocol/openid-connect/certs
 
 

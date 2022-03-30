@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 class ObjectClassIT extends AbstractIntegrationTest {
 
-  private static final String TEST_USER = "TestUser";
+  private static final String TEST_USER = "SYSTEM";
   private static final String TEST_NAME = "Test name";
 
   @Autowired ObjectClassRepository objectClassRepository;
