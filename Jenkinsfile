@@ -122,19 +122,19 @@ def install() {
   // this step makes install of packed app (for maven it install in local repo)
 	echo "Install"
 
-  // *** uncomment this section if need to join angular with spring boot in one app (change url of frontend repo)
-  // *** needs also to extend pom.xml to add extra parameter where to find frontent binary files
-  //dir ('front') {
-  //  git branch: 'develop', credentialsId: '3ca3a95a-9d22-4db0-8db7-2bcf0a290d8f', url: 'https://git.devops.cc.lab.etk.extern.eu.ericsson.se/ETK_CC/poc-client-ui.git'
-  //}
-  //dir ('front') {
-  //  sh 'npm install'
-  //}
-  //dir ('front') {
-  //  sh 'ng build'
-  //}
+  *** uncomment this section if need to join angular with spring boot in one app (change url of frontend repo)
+  *** needs also to extend pom.xml to add extra parameter where to find frontent binary files
+  dir ('front') {
+   git branch: 'develop', credentialsId: '3ca3a95a-9d22-4db0-8db7-2bcf0a290d8f', url: 'https://git.devops.cc.lab.etk.extern.eu.ericsson.se/BY/dyndoc-configurator-ui.git'
+  }
+  dir ('front') {
+   sh 'npm install'
+  }
+  dir ('front') {
+   sh 'ng build'
+  }
 
-  sh 'mvn --batch-mode package -DskipTests'
+  sh 'mvn --batch-mode package -Dfrontend.path=front/dist/dyndoc-configurator-ui -DskipTests'
 }
 
 def integrationTest() {
