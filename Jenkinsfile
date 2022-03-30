@@ -122,8 +122,8 @@ def install() {
   // this step makes install of packed app (for maven it install in local repo)
 	echo "Install"
 
-  *** uncomment this section if need to join angular with spring boot in one app (change url of frontend repo)
-  *** needs also to extend pom.xml to add extra parameter where to find frontent binary files
+//   *** uncomment this section if need to join angular with spring boot in one app (change url of frontend repo)
+//   *** needs also to extend pom.xml to add extra parameter where to find frontent binary files
   dir ('front') {
    git branch: 'develop', credentialsId: '3ca3a95a-9d22-4db0-8db7-2bcf0a290d8f', url: 'https://git.devops.cc.lab.etk.extern.eu.ericsson.se/BY/dyndoc-configurator-ui.git'
   }
