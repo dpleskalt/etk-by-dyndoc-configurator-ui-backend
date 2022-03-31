@@ -128,6 +128,9 @@ def install() {
    git branch: 'develop', credentialsId: '3ca3a95a-9d22-4db0-8db7-2bcf0a290d8f', url: 'https://git.devops.cc.lab.etk.extern.eu.ericsson.se/BY/dyndoc-configurator-ui.git'
   }
   dir ('front') {
+   sh 'rm -f package-lock.json'
+  }
+  dir ('front') {
    sh 'npm install'
   }
   dir ('front') {
