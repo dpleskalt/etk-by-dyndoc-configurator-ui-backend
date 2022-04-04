@@ -4,9 +4,9 @@
 ########################################################################################################################
 
 server:
-  port: 8080
+  port: 8081
   servlet:
-    context-path: /^project.artifactId^
+    context-path: /dyndoc-configurator-ui-backend
   tomcat:
     mbeanregistry:
       enabled: true
@@ -30,12 +30,20 @@ logging:
   spring:
     boot:
       application: hr.ericsson.ehealth.belarus.dyndoc.configurator.Application
-  #kafka:
-    #topic: "by-application-topic"
-    #bootstrap:
-      #servers: messaging-broker-o1:9092,messaging-broker-o2:9092,messaging-broker-o3:9092
+      kafka:
+      topic: "by-application-topic"
+      bootstrap:
+      servers: messaging-broker-o1:9092,messaging-broker-o2:9092,messaging-broker-o3:9092
 
 spring:
+  datasource:
+    initialization-mode: never #for initial database population set to 'always'
+    platform: postgres
+    username: iehr
+    password: 1234
+    url: jdbc:postgresql://app-db-princ-o1.dc1.lab.by.etk.hr:5444/iehr?currentSchema=iehr&useSSL=false
+    sqlScriptEncoding: UTF-8
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: none
@@ -45,9 +53,6 @@ spring:
         jwt:
           jwk-set-uri: http://keycloak-o1.dc1.lab.by.etk.hr:8080/auth/realms/lab/protocol/openid-connect/certs
 
-  #to use local postgres db run spring with "local" profile, -Dspring.profiles.active=local in VM arguments
-  profiles:
-    active: dev
   liquibase:
     enabled: true
     drop-first: true
@@ -68,7 +73,7 @@ management:
     health:
       probes:
         enabled: true
-#  endpoint.health.show-details: always
+  #  endpoint.health.show-details: always
   health.defaults.enabled: false
   endpoints.web.exposure.include: refresh,health,info,metrics,prometheus
 # because there is no eureka registry:
@@ -78,15 +83,15 @@ spring.cloud.discovery.client.composite-indicator.enabled: false
 ## Configuring actuator/info endpoint
 info:
   app:
-    name: ^project.artifactId^
-    description: ^project.description^
-    version: ^project.version^
+    name: dyndoc-configurator-ui-backend
+    description: DYNDOC configurator eHealth Microservice
+    version: 0.0.1
 
 
 swagger:
-  title: ^project.name^
-  description: ^project.description^
-  version: ^project.version^
+  title: dyndoc-configurator-ui-backend
+  description: DYNDOC configurator eHealth Microservice
+  version: 0.0.1
   termsOfServiceUrl: \#
   contactName: Dzmitry Harlach
   contactUrl: \#
@@ -96,9 +101,9 @@ swagger:
 
 by:
   errors:
-     languages:
-       - en
-       - ru
+    languages:
+      - en
+      - ru
 
 auth-lib:
   tokenLifetimeMinutes: 1440 # 24 hours
