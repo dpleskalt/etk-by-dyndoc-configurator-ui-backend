@@ -6,9 +6,9 @@ services:
     container_name: postgres_container
     image: postgres
     environment:
-      POSTGRES_USER: iehr
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: iehr
+      POSTGRES_USER: iehr_test
+      POSTGRES_PASSWORD: iehrt123!
+      POSTGRES_DB: iehr_test
     ports:
       - "5432:5432"
 
