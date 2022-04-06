@@ -5,9 +5,9 @@ spring:
   datasource:
     initialization-mode: never #for initial database population set to 'always'
     platform: postgres
-    username: iehr
-    password: 1234
-    url: jdbc:postgresql://localhost:5432/iehr?currentSchema=iehr&useSSL=false
+    username: iehr_test
+    password: iehrt123!
+    url: jdbc:postgresql://localhost:5432/iehr_test?currentSchema=iehr_test&useSSL=false
     sqlScriptEncoding: UTF-8
     driver-class-name: org.postgresql.Driver
   jpa:

@@ -1,1 +1,1 @@
-set search_path to iehr;
+set search_path to iehr_test;
