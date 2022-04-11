@@ -15,3 +15,52 @@ spring:
 #         specify port 8081 if you are running keylock-mock-service in a docker container or 8080 locally
           jwk-set-uri: http://localhost:8081/certs
 
+# FHIR client configuration
+fhir:
+  default:
+    serverAddress: http://localhost:8070/fhir
+  serverAddress: http://localhost:8070/fhir
+  connectTimeout: 200000
+  socketTimeout: 200000
+  poolMaxTotal: 100
+  poolMaxPerRoute: 100
+
+auth-lib:
+  claims:
+    id: sub
+    username: preferred_username
+    firstName: given_name
+    lastName: family_name
+    fullName: name
+    practitionerOid: practitioner_oid
+    issuer: iss
+    authorities: authorities
+  token-lifetime-minutes: 1440 # 24 hours
+  claim-names: realm_access,resource_access
+  oid-delimiter: .
+  validation: true
+  cache-department: false
+  header-department: false
+  header-department-name: CurrentDepartment
+  ignored-patterns:
+    - /static/**
+    - /actuator/**
+    - /v2/api-docs/**
+    - /v2/api-docs
+    - /swagger-resources/**
+    - /swagger-ui.html**
+    - /swagger-ui/
+    - /swagger-ui/**
+    - /webjars/**
+    - favicon.ico
+    - /icd-api/**
+    - /icd-api/
+    - /icd-api
+    - /cts/**
+    - /cts/
+    - /cts
+    - /referral/**
+    - /referral/
+    - /referral
+  auth-patterns:
+    - /api/**

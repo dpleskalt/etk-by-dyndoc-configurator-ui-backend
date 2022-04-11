@@ -100,6 +100,14 @@ by:
        - en
        - ru
 
+logout:
+  logout-url: 'https://web.dc1.lab.by.etk.hr/protected?logout=https://web.dc1.lab.by.etk.hr/logout'
+  cookie-auth-session: 'mod_auth_openidc_session'
+
+orgslct-ui-backend:
+  supportedRoles:
+    - "2.16.112.1.18.5.5.5.2.1"
+
 auth-lib:
   tokenLifetimeMinutes: 1440 # 24 hours
   ignored-patterns:

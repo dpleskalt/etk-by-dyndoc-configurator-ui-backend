@@ -51,7 +51,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://keycloak-o1.dc1.lab.by.etk.hr:8080/auth/realms/lab/protocol/openid-connect/certs
+          issuer-uri: http://localhost:9022/auth/realms/practitioner
+          jwk-set-uri: http://localhost:9022/auth/realms/practitioner/protocol/openid-connect/certs
 
   liquibase:
     enabled: true
@@ -103,8 +104,47 @@ by:
       - en
       - ru
 
+logout:
+  logout-url: 'https://web.dc1.lab.by.etk.hr/protected?logout=https://web.dc1.lab.by.etk.hr/logout'
+  cookie-auth-session: 'mod_auth_openidc_session'
+
+orgslct-ui-backend:
+  supportedRoles:
+    - "2.16.112.1.18.5.5.5.2.1"
+    - "2.16.112.1.18.5.5.5.2.2"
+    - "2.16.112.1.18.5.5.5.2.3"
+    - "2.16.112.1.18.5.5.5.2.7.4.14.3"
+    - "2.16.112.1.18.5.5.5.2.7.4.18.3"
+    - "2.16.112.1.18.5.5.5.2.7.4.3000002"
+    - "2.16.112.1.18.5.5.5.2.7.4.3000005"
+
+# FHIR client configuration
+fhir:
+  default:
+    serverAddress: http://localhost:9013/fhir
+  serverAddress: http://localhost:9013/fhir
+  connectTimeout: 200000
+  socketTimeout: 200000
+  poolMaxTotal: 100
+  poolMaxPerRoute: 100
+
 auth-lib:
-  tokenLifetimeMinutes: 1440 # 24 hours
+  claims:
+    id: sub
+    username: preferred_username
+    firstName: given_name
+    lastName: family_name
+    fullName: name
+    practitionerOid: practitioner_oid
+    issuer: iss
+    authorities: authorities
+  token-lifetime-minutes: 1440 # 24 hours
+  claim-names: realm_access,resource_access
+  oid-delimiter: .
+  validation: true
+  cache-department: false
+  header-department: false
+  header-department-name: CurrentDepartment
   ignored-patterns:
     - /static/**
     - /actuator/**
@@ -116,6 +156,5 @@ auth-lib:
     - /swagger-ui/**
     - /webjars/**
     - favicon.ico
-    - /api/oid/generate
-    - /api/oid/validate
-    - /api/oid/external-id
+  auth-patterns:
+    - /api/**
