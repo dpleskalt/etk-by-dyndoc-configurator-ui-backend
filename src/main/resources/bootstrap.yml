@@ -8,4 +8,4 @@ spring:
     name: dyndoc-configurator-ui-backend
   cloud:
     config:
-      uri: http://ehealth-confsrv.confsrv:8888 # this url has to be in the bootstrap.yml
+      uri: http://localhost:9013/fhir # this url has to be in the bootstrap.yml

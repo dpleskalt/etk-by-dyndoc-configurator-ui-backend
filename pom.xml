@@ -19,12 +19,13 @@
 		<spring.jpa.version>2.6.4</spring.jpa.version>
 		<jacoco.version>0.8.6</jacoco.version>
 		<resource.delimiter>^</resource.delimiter>
-		<clc-logger.version>(0.0.2,0.0.3)</clc-logger.version>
+		<clc-logger.version>[0.0.3,)</clc-logger.version>
 		<liquibase.version>4.8.0</liquibase.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<lombok.version>1.18.20</lombok.version>
 		<specification.version>2.6.2</specification.version>
-		<auth-lib.version>0.0.1+50</auth-lib.version>
+		<fhir-client.version>0.0.3-14</fhir-client.version>
+		<organization.select.version>1.0.0+41</organization.select.version>
 		<frontend.path>../dyndoc-configurator-ui/dist/dyndoc-configurator-ui</frontend.path>
 	</properties>
 
@@ -40,8 +41,13 @@
 		</dependency>
 		<dependency>
 			<groupId>hr.ericsson.ehealth.belarus</groupId>
-			<artifactId>auth-lib</artifactId>
-			<version>${auth-lib.version}</version>
+			<artifactId>fhir-client</artifactId>
+			<version>${fhir-client.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>hr.ericsson.ehealth.belarus</groupId>
+			<artifactId>organization-select-ui-backend</artifactId>
+			<version>${organization.select.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
