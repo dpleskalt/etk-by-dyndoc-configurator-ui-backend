@@ -72,7 +72,7 @@ management:
   health.defaults.enabled: false
   endpoints.web.exposure.include: refresh,health,info,metrics,prometheus
 # because there is no eureka registry:
-spring.cloud.discovery.client.composite-indicator.enabled: false
+#spring.cloud.discovery.client.composite-indicator.enabled: false
 
 
 ## Configuring actuator/info endpoint
@@ -121,6 +121,5 @@ auth-lib:
     - /swagger-ui/**
     - /webjars/**
     - favicon.ico
-    - /api/oid/generate
-    - /api/oid/validate
-    - /api/oid/external-id
+  auth-patterns:
+    - /api/**

@@ -25,9 +25,9 @@ spring:
       resourceserver:
         jwt:
 #          docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:17.0.1 start-dev
-          jwk-set-uri: http://localhost:8080/realms/lab/protocol/openid-connect/certs
-#          specify port 8080 if you are running keylock-mock-service locally
-#          jwk-set-uri: http://localhost:8080/certs
+#          jwk-set-uri: http://localhost:8080/realms/lab/protocol/openid-connect/certs
+#         specify port 8081 if you are running keylock-mock-service in a docker container or 8080 locally
+          jwk-set-uri: http://localhost:8081/certs
 
 # FHIR client configuration
 fhir:

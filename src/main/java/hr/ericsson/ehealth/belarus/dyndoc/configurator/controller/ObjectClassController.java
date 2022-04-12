@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/classes")
+@RequestMapping("/api/classes")
 public class ObjectClassController {
 
   private final ObjectClassService objectClassService;
