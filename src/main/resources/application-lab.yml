@@ -54,6 +54,8 @@ spring:
           issuer-uri: http://localhost:9022/auth/realms/practitioner
           jwk-set-uri: http://localhost:9022/auth/realms/practitioner/protocol/openid-connect/certs
 
+  profiles:
+    active: lab
   liquibase:
     enabled: true
     drop-first: true
@@ -74,7 +76,7 @@ management:
     health:
       probes:
         enabled: true
-  #  endpoint.health.show-details: always
+#  endpoint.health.show-details: always
   health.defaults.enabled: false
   endpoints.web.exposure.include: refresh,health,info,metrics,prometheus
 
@@ -111,12 +113,6 @@ logout:
 orgslct-ui-backend:
   supportedRoles:
     - "2.16.112.1.18.5.5.5.2.1"
-    - "2.16.112.1.18.5.5.5.2.2"
-    - "2.16.112.1.18.5.5.5.2.3"
-    - "2.16.112.1.18.5.5.5.2.7.4.14.3"
-    - "2.16.112.1.18.5.5.5.2.7.4.18.3"
-    - "2.16.112.1.18.5.5.5.2.7.4.3000002"
-    - "2.16.112.1.18.5.5.5.2.7.4.3000005"
 
 # FHIR client configuration
 fhir:
